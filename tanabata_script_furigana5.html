@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>たなばた スクリプト</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            line-height: 2.2;
+            padding: 40px;
+            background-color: #fcfbf9;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #2b5828;
+            text-align: center;
+            border-bottom: 2px solid #2b5828;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #4a7c59;
+            margin-top: 30px;
+            border-left: 5px solid #4a7c59;
+            padding-left: 10px;
+        }
+        .meta {
+            background-color: #f0f7f4;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .synopsis {
+            background-color: #faf3e0;
+            padding: 20px;
+            border-radius: 5px;
+            border-left: 5px solid #e0a96d;
+            margin-bottom: 30px;
+        }
+        .line {
+            margin-bottom: 15px;
+        }
+        .character {
+            font-weight: bold;
+            color: #1a3a2a;
+        }
+        ruby rt {
+            font-size: 0.6em;
+            color: #666;
+        }
+        .hide-ruby rt {
+            display: none;
+        }
+        .bottom-ruby {
+          ruby-position: under;
+        }
+        .vertical-mode {
+            writing-mode: vertical-rl; /* Text flows vertically, right to left */
+            text-orientation: upright; /* Keeps characters standing upright */
+            max-height: 90dvh;
+        }
+
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<h1>🎋「たなばた 」 🎋</h1>
+<div id="scroll_lol"></div>
+<div class="meta">
+    <p>◆📖ナレーター：サロメ</p>
+    <p>◆🌸おりひめ：ノエル</p>
+    <p>◆🧑‍🌾ひこぼし：マクス</p>
+    <p>◆🫅天帝：レネ</p>
+</div>
+
+<script>
+function toggleFurigana() {
+    document.body.classList.toggle('hide-ruby');
+}
+function toggleFuriganaSide() {
+    document.body.classList.toggle('bottom-ruby');
+}
+function toggleLayout() {
+    toggle_result=document.body.classList.toggle('vertical-mode');
+    // Calculate total scrollable width minus visible viewport width
+    if(toggle_result) document.getElementById('scroll_lol').scrollIntoView({ behavior: 'smooth' });
+}
+</script>
+
+<button onclick="toggleFurigana()">Toggle Furigana On/Off</button>
+<button onclick="toggleFuriganaSide()">Toggle Furigana Side</button>
+<button onclick="toggleLayout()">Toggle Vertical Text</button>
+<h2>あらすじ:</h2>
+<div class="synopsis">
+    <ruby>天界<rt>てんかい</rt></ruby>で<ruby>織<rt>お</rt></ruby>り<ruby>姫<rt>ひめ</rt></ruby>は<ruby>美<rt>うつく</rt></ruby>しい<ruby>着物<rt>きもの</rt></ruby>を<ruby>織<rt>お</rt></ruby>り、<ruby>彦星<rt>ひこぼし</rt></ruby>は<ruby>牛<rt>うし</rt></ruby>の<ruby>世話<rt>せわ</rt></ruby>をしていますが、<ruby>二人<rt>ふたり</rt></ruby>とも<ruby>独<rt>ひとり</rt></ruby>りで<ruby>寂<rt>さび</rt></ruby>しがっています。<ruby>天帝<rt>てんてい</rt></ruby>は<ruby>橋<rt>はし</rt></ruby>の<ruby>上<rt>うえ</rt></ruby>で<ruby>二人<rt>ふたり</rt></ruby>を<ruby>引<rt>ひ</rt></ruby>き<ruby>合<rt>あ</rt></ruby>わせることにすると、<ruby>二人<rt>ふたり</rt></ruby>はあっという<ruby>間<rt>ま</rt></ruby>に<ruby>友達<rt>ともだち</rt></ruby>になります。しかし、ずっと<ruby>一緒<rt>いっしょ</rt></ruby>に<ruby>遊<rt>あそ</rt></ruby>んでいるので、<ruby>自分<rt>じぶん</rt></ruby>の<ruby>仕事<rt>しごと</rt></ruby>を<ruby>怠<rt>おこた</rt></ruby>るようになります。それで<ruby>天界<rt>てんかい</rt></ruby>は<ruby>大混乱<rt>だいこんらん</rt></ruby>に<ruby>陥<rt>おちい</rt></ruby>りました。<ruby>天帝<rt>てんてい</rt></ruby>は<ruby>優しい<rt>やさしい</rt></ruby>から、<ruby>二人<rt>ふたり</rt></ruby>を<ruby>厳<rt>きび</rt></ruby>しく<ruby>罰<rt>ばっ</rt></ruby>する代わりに、ある<ruby>提案<rt>ていあん</rt></ruby>をします。<ruby>普段<rt>ふだん</rt></ruby><ruby>一生懸命<rt>いっしょうけんめい</rt></ruby><ruby>働<rt>はたら</rt></ruby>けば、<ruby>年<rt>とし</rt></ruby>に<ruby>一度<rt>いちど</rt></ruby><ruby>集<rt>あつ</rt></ruby>まってもいい<ruby>約束<rt>やくそく</rt></ruby>でした。こうして、<ruby>毎年<rt>まいねん</rt></ruby>７<ruby>月<rt>がつ</rt></ruby>七<ruby>日<rt>か</rt></ruby>の「<ruby>七夕祭<rt>たなばたまつり</rt></ruby>り」が<ruby>始<rt>はじ</rt></ruby>まりました。この<ruby>日<rt>ひ</rt></ruby><ruby>二人<rt>ふたり</rt></ruby>は<ruby>橋<rt>はし</rt></ruby>を<ruby>渡<rt>わた</rt></ruby>って<ruby>一日中<rt>いちにちじゅう</rt></ruby><ruby>一緒<rt>いっしょ</rt></ruby>に<ruby>過ごし<rt>すごし</rt></ruby>、<ruby>庶民<rt>しょみん</rt></ruby>たちはそれを<ruby>見<rt>み</rt></ruby>ながら、<ruby>願い事<rt>ねがいごと</rt></ruby>を<ruby>書<rt>か</rt></ruby>いた<ruby>紙<rt>かみ</rt></ruby>を<ruby>飾<rt>かざ</rt></ruby>ります。
+</div>
+
+<h2>スクリプト:</h2>
+
+<h3>第１幕：真面目な天界</h3>
+
+<div class="line">
+    <span class="character">📖 ナレーター:</span><br>
+    「 みなさんこんにちは。<ruby>天界<rt>てんかい</rt></ruby>へようこそ。<ruby>天<rt>てん</rt></ruby>を<ruby>仰<rt>あお</rt></ruby>ぎましょう。<ruby>昔々<rt>むかしむかし</rt></ruby>、すばらしい<ruby>姫<rt>ひめ</rt></ruby>がここに<ruby>住<rt>す</rt></ruby>んでいました。<ruby>彼女<rt>かのじょ</rt></ruby>の<ruby>名前<rt>なまえ</rt></ruby>は<ruby>織姫<rt>おりひめ</rt></ruby>でした。<ruby>美<rt>うつく</rt></ruby>しい<ruby>着物<rt>きもの</rt></ruby>を<ruby>織<rt>お</rt></ruby>ることが<ruby>好<rt>す</rt></ruby>きで、<ruby>毎日<rt>まいにち</rt></ruby><ruby>一所懸命<rt>いっしょけんめい</rt></ruby><ruby>働<rt>はたら</rt></ruby>いていました。」
+</div>
+
+<div class="line">
+    <span class="character">🌸 織姫：</span><br>
+    「おうこくの みんなに、きれいな ふくを きてほしいなあ。<br>
+    でも、まいにちひとりでしごとを していると、すこし さびしい<ruby>気持<rt>きも</rt></ruby>ちになるなあ。」
+</div>
+
+<div class="line">
+    <span class="character">📖 ナレーター:</span><br>
+    「 <ruby>天<rt>あま</rt></ruby>の<ruby>川<rt>がわ</rt></ruby>の<ruby>向<rt>むこ</rt></ruby>うには<ruby>彦星<rt>ひこぼし</rt></ruby>と<ruby>呼<rt>よ</rt></ruby>ばれている<ruby>若者<rt>わかもの</rt></ruby>が<ruby>暮<rt>く</rt></ruby>らしていました。<ruby>彼<rt>かれ</rt></ruby>はとても<ruby>熱心<rt>ねっしん</rt></ruby>な<ruby>牛飼<rt>うしかい</rt></ruby>いでした。」
+</div>
+
+<div class="line">
+    <span class="character">🧑‍🌾 彦星：</span><br>
+    「 おいで、<ruby>牛<rt>うし</rt></ruby>たち！<br>
+    このおいしい<ruby>雲<rt>くも</rt></ruby>の<ruby>草<rt>くさ</rt></ruby>をたくさん<ruby>食<rt>た</rt></ruby>べてね。しっかり<ruby>食<rt>た</rt></ruby>べれば、<ruby>元気<rt>げんき</rt></ruby>で<ruby>強<rt>つよ</rt></ruby>くなれるよ。ぼくは<ruby>牛<rt>うし</rt></ruby>の<ruby>世話<rt>せわ</rt></ruby>をするのが<ruby>大好<rt>だいすき</rt></ruby>んだ。でも、<ruby>正直<rt>しょうじき</rt></ruby>に<ruby>言<rt>い</rt></ruby>うと、<ruby>一日中<rt>いちにちじゅう</rt></ruby><ruby>牛<rt>うし</rt></ruby>とばかり<ruby>話<rt>はな</rt></ruby>していると<ruby>少<rt>すこ</rt></ruby>しさびしいな。<br>
+    <ruby>人間<rt>にんげん</rt></ruby>の<ruby>友達<rt>ともだち</rt></ruby>がいたらいいのに。」
+</div>
+
+<div class="line">
+    <span class="character">📖 ナレーター:</span><br>
+    「 <ruby>二人<rt>ふたり</rt></ruby>は<ruby>仕事<rt>しごと</rt></ruby>に<ruby>誇<rt>ほこ</rt></ruby>りをつねに<ruby>持<rt>も</rt></ruby>っていましたが、<ruby>寂<rt>さび</rt></ruby>しさも<ruby>感<rt>かん</rt></ruby>じていました。」
+</div>
+
+<div class="line">
+    <span class="character">🫅 天帝：</span><br>
+    「 <ruby>私<rt>わたし</rt></ruby>の<ruby>娘<rt>むすめ</rt></ruby>はいつも<ruby>働<rt>はたら</rt></ruby>いている。そして、あそこにいる<ruby>彦星<rt>ひこぼし</rt></ruby>は<ruby>動物<rt>どうぶつ</rt></ruby>の<ruby>面倒<rt>めんどう</rt></ruby>をよく<ruby>見<rt>み</rt></ruby>ている。<br>
+    <ruby>二人<rt>ふたり</rt></ruby>は<ruby>素晴<rt>すば</rt></ruby>らしいですけど、なんだか<ruby>少<rt>すこ</rt></ruby>し<ruby>寂<rt>さび</rt></ruby>しそうだな。<ruby>王<rt>おう</rt></ruby>として、<ruby>彼<rt>かれ</rt></ruby>らを<ruby>助<rt>たす</rt></ruby>けよう。<br>
+    そうだ。いい<ruby>作戦<rt>さくせん</rt></ruby>があるぞ。あの<ruby>二人<rt>ふたり</rt></ruby>を<ruby>紹介<rt>しょうかい</rt></ruby>しよう。」
+</div>
+
+<h3>第２幕：雲の橋での出会い</h3>
+
+<div class="line">
+    <span class="character">📖 ナレーター：</span><br>
+    「<ruby>天帝<rt>てんてい</rt></ruby>は<ruby>二人<rt>ふたり</rt></ruby>を<ruby>王国<rt>おうこく</rt></ruby>の<ruby>中心<rt>ちゅうしん</rt></ruby>に<ruby>呼<rt>よ</rt></ruby>びました。<ruby>天<rt>あま</rt></ruby>の<ruby>川<rt>がわ</rt></ruby>の<ruby>上<rt>うえ</rt></ruby>の<ruby>橋<rt>はし</rt></ruby>で<ruby>会<rt>あ</rt></ruby>いました。その<ruby>日<rt>ひ</rt></ruby>は、とてもよく<ruby>晴<rt>は</rt></ruby>れた<ruby>気持<rt>きも</rt></ruby>ちの<ruby>良<rt>よ</rt></ruby>い<ruby>日<rt>ひ</rt></ruby>でした。 」
+</div>
+
+<div class="line">
+    <span class="character">🫅 天帝：</span><br>
+    「 <ruby>織姫<rt>おりひめ</rt></ruby>、<ruby>彦星<rt>ひこぼし</rt></ruby>、ここにお<ruby>来<rt>き</rt></ruby>なさい。<ruby>織姫<rt>おりひめ</rt></ruby>、<ruby>彼<rt>かれ</rt></ruby>は<ruby>彦星<rt>ひこぼし</rt></ruby>です。<br>
+    <ruby>彦星<rt>ひこぼし</rt></ruby>、<ruby>彼女<rt>かのじょ</rt></ruby>は<ruby>私<rt>わたし</rt></ruby>の<ruby>娘<rt>むすめ</rt></ruby>の<ruby>織姫<rt>おりひめ</rt></ruby>だ。<ruby>私<rt>わたし</rt></ruby>たちの<ruby>一番<rt>いちばん</rt></ruby>の<ruby>織<rt>お</rt></ruby>り<ruby>手<rt>て</rt></ruby>です。<br>
+    <ruby>二人<rt>ふたり</rt></ruby>ともいつも<ruby>頑張<rt>がんば</rt></ruby>っているから、きっと<ruby>仲良<rt>なかよ</rt></ruby>くなるはずだ。」
+</div>
+
+<div class="line">
+    <span class="character">🌸 織姫：</span><br>
+    「はじめまして、ひこぼしさん。<br>
+    あなたは うしの せわを とても よくしているので、うしたちは いつも しあわせだと ききました。 」
+</div>
+
+<div class="line">
+    <span class="character">🧑‍🌾 彦星：</span><br>
+    「 はじめまして、<ruby>織姫様<rt>おりひめさま</rt></ruby>。<br>
+    あなたの<ruby>美<rt>うつく</rt></ruby>しい<ruby>着物<rt>きもの</rt></ruby>は、<ruby>川<rt>かわ</rt></ruby>の<ruby>向<rt>むこ</rt></ruby>うからも<ruby>見<rt>み</rt></ruby>えます。<ruby>本当<rt>ほんとう</rt></ruby>に<ruby>素晴<rt>すば</rt></ruby>らしい<ruby>仕事<rt>しごと</rt></ruby>ですね。こうしてお<ruby>話<rt>はな</rt></ruby>でき、とてもうれしいです。」
+</div>
+
+<div class="line">
+    <span class="character">📖 ナレーター：</span><br>
+    「 <ruby>二人<rt>ふたり</rt></ruby>は<ruby>話<rt>はな</rt></ruby>し<ruby>始<rt>はじ</rt></ruby>めました。<ruby>星<rt>ほし</rt></ruby>や<ruby>雲<rt>くも</rt></ruby>や<ruby>好<rt>す</rt></ruby>きなものなどについて<ruby>話<rt>はな</rt></ruby>しました。すぐにたくさんの<ruby>共通点<rt>きょうつうてん</rt></ruby>を<ruby>見<rt>み</rt></ruby>つけました。あっという<ruby>間<rt>ま</rt></ruby>に<ruby>親友<rt>しんゆう</rt></ruby>になりました。」
+</div>
+
+<div class="line">
+    <span class="character">🌸 織姫：</span><br>
+    「 ひこぼしさん、あなたは とても おもしろくて やさしいですね。<br>
+    <ruby>明日<rt>あした</rt></ruby>も <ruby>一緒<rt>いっしょ</rt></ruby>に <ruby>川<rt>かわ</rt></ruby>の そばを <ruby>散歩<rt>さんぽ</rt></ruby>しましょう！」
+</div>
+
+<div class="line">
+    <span class="character">🧑‍🌾 彦星：</span><br>
+    「ぜひ！<br>
+    <ruby>織姫様<rt>おりひめさま</rt></ruby>と<ruby>過<rt>すご</rt></ruby>す<ruby>時間<rt>じかん</rt></ruby>は、<ruby>牛<rt>うし</rt></ruby>たちといるよりずっと<ruby>楽<rt>たの</rt></ruby>しいよ。<br>
+    これから<ruby>毎日<rt>まいにち</rt></ruby>いっしょに<ruby>遊<rt>あそ</rt></ruby>ぼう！」
+</div>
+
+<h3>第３幕：忘れた義務</h3>
+
+<div class="line">
+    <span class="character">📖 ナレーター：</span><br>
+    「 <ruby>数週間<rt>すうしゅうかん</rt></ruby>が<ruby>過<rt>す</rt></ruby>ぎました。<ruby>織姫<rt>おりひめ</rt></ruby>と<ruby>彦星<rt>ひこぼし</rt></ruby>は<ruby>毎日会<rt>まいにちあ</rt></ruby>って、<ruby>一緒<rt>いっしょ</rt></ruby>に<ruby>楽<rt>たの</rt></ruby>しみました。ゲームをしたり、<ruby>雲<rt>くも</rt></ruby>の<ruby>上<rt>うえ</rt></ruby>を<ruby>散歩<rt>さんぽ</rt></ruby>したり、<ruby>何時間<rt>なんじかん</rt></ruby>も<ruby>話<rt>はな</rt></ruby>し<ruby>続<rt>つづ</rt></ruby>けたりしました。しかし、<ruby>遊<rt>あそ</rt></ruby>ぶことが<ruby>楽<rt>たの</rt></ruby>しすぎて、<ruby>大切<rt>たいせつ</rt></ruby>なことを<ruby>忘<rt>わす</rt></ruby>れてしまいました。<ruby>二人<rt>ふたり</rt></ruby>は<ruby>仕事<rt>しごと</rt></ruby>をやめてしまったのです。」
+</div>
+
+<div class="line">
+    <span class="character">🌸 織姫：</span><br>
+    「 ぬのを おるしごとはらいしゅうでも できます。<br>
+    きょうは あなたと あそぶほうが、ずっと だいじです！」
+</div>
+
+<div class="line">
+    <span class="character">🧑‍🌾 彦星：</span><br>
+    「 そうだね、<ruby>織姫様<rt>おりひめさま</rt></ruby>！<br>
+    <ruby>牛<rt>うし</rt></ruby>たちはどうせ<ruby>寝<rt>ね</rt></ruby>ているし、<ruby>今日<rt>きょう</rt></ruby>はぼくがいなくても<ruby>大丈夫<rt>だいじょうぶ</rt></ruby>だよ。<ruby>今<rt>いま</rt></ruby>すぐ<ruby>空<rt>そら</rt></ruby>の<ruby>公園<rt>こうえん</rt></ruby>へ<ruby>行<rt>い</rt></ruby>って、もうひとつゲームをしよう！<br>
+    <ruby>仕事<rt>しごと</rt></ruby>なんてつまらないよ！」
+</div>
+
+<h3>第４幕：天帝の怒り</h3>
+
+<div class="line">
+    <span class="character">📖 ナレーター：</span><br>
+    「 ずっと<ruby>遊<rt>あそ</rt></ruby>んでいたので、<ruby>天界<rt>てんかい</rt></ruby>が<ruby>大混乱<rt>だいこんらん</rt></ruby>に<ruby>陥<rt>おちい</rt></ruby>りました。ある<ruby>時<rt>とき</rt></ruby>、<ruby>天帝<rt>てんてい</rt></ruby>は、<ruby>二人<rt>ふたり</rt></ruby>が<ruby>仕事<rt>しごと</rt></ruby>をさぼっていることに<ruby>気<rt>き</rt></ruby>が<ruby>付<rt>つ</rt></ruby>いて、<ruby>激<rt>はげ</rt></ruby>しく<ruby>怒<rt>おこ</rt></ruby>りました。」
+</div>
+
+<div class="line">
+    <span class="character">🫅 天帝:</span><br>
+    「 なんてこった！<ruby>人々<rt>ひとびと</rt></ruby>が<ruby>着<rt>き</rt></ruby>る<ruby>新<rt>あたら</rt></ruby>しい<ruby>服<rt>ふく</rt></ruby>がない！そして<ruby>牛<rt>うし</rt></ruby>が<ruby>空中庭園<rt>くうちゅうていえん</rt></ruby>を<ruby>荒<rt>あ</rt></ruby>らしている。<br>
+    せっかく<ruby>二人<rt>ふたり</rt></ruby>に<ruby>幸せ<rt>しあわせ</rt></ruby>になるチャンスをあげたのに、<ruby>結局<rt>けっきょく</rt></ruby>、<ruby>怠<rt>なま</rt></ruby>けてしまったのか。これは<ruby>許<rt>ゆる</rt></ruby>されない。<br>
+    <ruby>二人<rt>ふたり</rt></ruby>には<ruby>罰<rt>ばつ</rt></ruby>を<ruby>与<rt>あた</rt></ruby>える。」
+</div>
+
+<div class="line">
+    <span class="character">🌸 織姫：</span><br>
+    「 おとうさま、おねがいです！<br>
+    わたしたちは いっしょにいて、とても しあわせだったので、つい じかんを わすれてしまっただけです。<br>
+    こまらせるつもりも、しごとを さぼるつもりも ありませんでした。」
+</div>
+
+<div class="line">
+    <span class="character">🧑‍🌾 彦星：</span><br>
+    「どうかお<ruby>許<rt>ゆる</rt></ruby>しください、<ruby>天帝様<rt>てんていさま</rt></ruby>！<br>
+    <ruby>今<rt>いま</rt></ruby>すぐ<ruby>庭天帝様<rt>にわてんていさま</rt></ruby>して、<ruby>仕事<rt>しごと</rt></ruby>にもどります。<br>
+    どうかそんなに<ruby>怒<rt>おこ</rt></ruby>らないでください。 」
+</div>
+
+<div class="line">
+    <span class="character">🫅 天帝:</span><br>
+    「 <ruby>言い訳<rt>いいわけ</rt></ruby>はもうどうでもいい！<ruby>友人<rt>ゆうじん</rt></ruby>と<ruby>仕事<rt>しごと</rt></ruby>のバランスをとることは<ruby>難<rt>むずか</rt></ruby>しい。だから、もう<ruby>二人<rt>ふたり</rt></ruby>を<ruby>会<rt>あ</rt></ruby>わせることはできない。<br>
+    <ruby>彦星<rt>ひこぼし</rt></ruby>、<ruby>今<rt>いま</rt></ruby>すぐ<ruby>天<rt>あま</rt></ruby>の<ruby>川<rt>がわ</rt></ruby>の<ruby>東側<rt>ひがしがわ</rt></ruby>に<ruby>戻<rt>もど</rt></ruby>るんだ！<ruby>織姫<rt>おりひめ</rt></ruby>は、この<ruby>西側<rt>にしがわ</rt></ruby>にいるんだ！<ruby>二人<rt>ふたり</rt></ruby>を<ruby>別<rt>わか</rt></ruby>れさせてやる！」
+</div>
+
+<h3>第５幕：涙と約束</h3>
+
+<div class="line">
+    <span class="character">📖 ナレーター：</span><br>
+    「<ruby>天帝<rt>てんてい</rt></ruby>が<ruby>二人<rt>ふたり</rt></ruby>を<ruby>分<rt>わ</rt></ruby>けました。<ruby>二人の間<rt>ふたりのあいだ</rt></ruby>には<ruby>天<rt>あま</rt></ruby>の<ruby>川<rt>がわ</rt></ruby>があって、<ruby>橋<rt>はし</rt></ruby>はありませんでした。<ruby>二人<rt>ふたり</rt></ruby>は<ruby>会<rt>あ</rt></ruby>えないことを<ruby>寂<rt>さび</rt></ruby>しがって、<ruby>毎日泣<rt>まいにちな</rt></ruby>いていました。<ruby>寂<rt>さび</rt></ruby>しすぎて、<ruby>全然働<rt>ぜんぜんはたら</rt></ruby>きませんでした。」
+</div>
+
+<div class="line">
+    <span class="character">🌸 織姫：</span><br>
+    「ひこぼしさん！ ごめんなさい。<br>
+    あなたに あいたくて たまりません。 」
+</div>
+
+<div class="line">
+    <span class="character">🧑‍🌾 彦星：</span><br>
+    「 <ruby>織姫様<rt>おりひめさま</rt></ruby>！<br>
+    <ruby>声<rt>こえ</rt></ruby>は<ruby>聞<rt>き</rt></ruby>こえるのに、<ruby>手<rt>て</rt></ruby>が<ruby>届<rt>とど</rt></ruby>かないよ！<br>
+    <ruby>牛<rt>うし</rt></ruby>たちも<ruby>悲<rt>かな</rt></ruby>しんでいるんだ。<br>
+    きみの<ruby>明るい笑顔<rt>あかるいえがお</rt></ruby>を<ruby>見<rt>み</rt></ruby>られないまま<ruby>働<rt>はたら</rt></ruby>くのは、<ruby>本当<rt>ほんとう</rt></ruby>につらいよ。<br>
+    どうしたらいいのかわからない。」
+</div>
+
+<div class="line">
+    <span class="character">🫅 天帝：</span><br>
+    「この<ruby>二人<rt>ふたり</rt></ruby>の<ruby>止<rt>と</rt></ruby>まらない<ruby>涙声<rt>なみだごえ</rt></ruby>を<ruby>聞<rt>き</rt></ruby>いていると、<ruby>私<rt>わたし</rt></ruby>の<ruby>心<rt>こころ</rt></ruby>もだんだん<ruby>重<rt>おも</rt></ruby>くなるなあ。いつまでも<ruby>不幸<rt>ふこう</rt></ruby>にさせたくないけど、ちゃんと<ruby>責任<rt>せきにん</rt></ruby>を<ruby>取<rt>と</rt></ruby>らせたい。<br>
+    よく<ruby>聞<rt>き</rt></ruby>くんだ<ruby>二人<rt>ふたり</rt></ruby>とも。これから<ruby>一生懸命働<rt>いっしょうけんめいはたら</rt></ruby>くなら、<ruby>提案<rt>ていあん</rt></ruby>があります。」
+</div>
+
+<div class="line">
+    <span class="character">🌸 織姫：</span><br>
+    「ほんとうですか、おとうさま？<br>
+    わたしは まいにち いちばん うつくしい ぬのを おります。<br>
+    だから、どうか もういちど かれに あわせてください！ 」
+</div>
+
+<div class="line">
+    <span class="character">🧑‍🌾 彦星：</span><br>
+    「 <ruby>天帝様<rt>てんていさま</rt></ruby>！<br>
+    ぼくは<ruby>牛<rt>うし</rt></ruby>たちの<ruby>世話<rt>せわ</rt></ruby>をしっかりします！<br>
+    もう<ruby>二度<rt>にど</rt></ruby>と<ruby>逃<rt>に</rt></ruby>がしません。<br>
+    どうか<ruby>条件<rt>じょうけん</rt></ruby>を<ruby>教<rt>おし</rt></ruby>えてください。<br>
+    ぼくたちは<ruby>何<rt>なん</rt></ruby>でもします！」
+</div>
+
+<div class="line">
+    <span class="character">🫅 天帝：</span><br>
+    「 <ruby>一年間<rt>いちねんかん</rt></ruby>、<ruby>二人<rt>ふたり</rt></ruby>が<ruby>仕事<rt>しごと</rt></ruby>を<ruby>完璧<rt>かんぺき</rt></ruby>にやるなら、<ruby>一年<rt>いちねん</rt></ruby>に<ruby>一日<rt>いちにち</rt></ruby>だけ、<ruby>天野川<rt>あまのがわ</rt></ruby>を<ruby>渡<rt>わた</rt></ruby>ることを<ruby>許可<rt>きょか</rt></ruby>しよう。<br>
+    その<ruby>日<rt>ひ</rt></ruby>は<ruby>七月七日<rt>しちがつなのか</rt></ruby>だ。ちゃんと<ruby>働<rt>はたら</rt></ruby>けば、その<ruby>ご褒美<rt>ごほうび</rt></ruby>を<ruby>与<rt>あた</rt></ruby>えてやろう。」
+</div>
+
+<h3>第６幕：七夕の祝い</h3>
+
+<div class="line">
+    <span class="character">📖 ナレーター：</span><br>
+    「 こうして、<ruby>新<rt>あたら</rt></ruby>しいルールが<ruby>始<rt>はじ</rt></ruby>まり、<ruby>織姫<rt>おりひめ</rt></ruby>も<ruby>彦星<rt>ひこぼし</rt></ruby>も<ruby>一生懸命<rt>いっしょうけんめい</rt></ruby>に<ruby>自分<rt>じぶん</rt></ruby>の<ruby>仕事<rt>しごと</rt></ruby>をこなしました。<ruby>織姫<rt>おりひめ</rt></ruby>は<ruby>美<rt>うつく</rt></ruby>しい<ruby>着物<rt>きもの</rt></ruby>を<ruby>織<rt>お</rt></ruby>って、<ruby>彦星<rt>ひこぼし</rt></ruby>は<ruby>元気一杯<rt>げんきいっぱい</rt></ruby>に<ruby>牛<rt>うし</rt></ruby>の<ruby>世話<rt>せわ</rt></ruby>をしました。<ruby>明確<rt>めいかく</rt></ruby>な<ruby>目標<rt>もくひょう</rt></ruby>があるおかげで、<ruby>毎日楽<rt>まいにちたの</rt></ruby>しく<ruby>頑張<rt>がんば</rt></ruby>りました。そしていよいよ７<ruby>月<rt>がつ</rt></ruby>７<ruby>日<rt>か</rt></ruby>になりした。」
+</div>
+
+<div class="line">
+    <span class="character">🫅 天帝：</span><br>
+    「<ruby>見<rt>み</rt></ruby>てください！カササギたちが<ruby>一緒<rt>いっしょ</rt></ruby>に<ruby>飛<rt>と</rt></ruby>んで、<ruby>天野川<rt>あまのがわ</rt></ruby>の<ruby>上<rt>うえ</rt></ruby>に<ruby>美<rt>うつく</rt></ruby>しい<ruby>橋<rt>はし</rt></ruby>を<ruby>作<rt>つく</rt></ruby>っている！<br>
+    <ruby>二人<rt>ふたり</rt></ruby>とも、<ruby>今年<rt>ことし</rt></ruby>は<ruby>本当<rt>ほんとう</rt></ruby>に<ruby>頑張<rt>がんば</rt></ruby>って、ちゃんとの<ruby>責任<rt>せきにん</rt></ruby>を<ruby>果<rt>はた</rt></ruby>した。さあ<ruby>行<rt>い</rt></ruby>って、<ruby>二人<rt>ふたり</rt></ruby>の<ruby>特別<rt>とくべつ</rt></ruby>な<ruby>日<rt>ひ</rt></ruby>を<ruby>楽<rt>たの</rt></ruby>しみなさい。<ruby>頑張<rt>がんば</rt></ruby>ったのだから。 」
+</div>
+
+<div class="line">
+    <span class="character">🌸 織姫：</span><br>
+    「 ひこぼしさん！ たなばた おめでとう！また あえて、とても うれしいです！」
+</div>
+
+<div class="line">
+    <span class="character">🧑‍🌾 彦星：</span><br>
+    「 <ruby>織姫様<rt>おりひめさま</rt></ruby>！<br>
+    <ruby>七夕<rt>たなばた</rt></ruby>おめでとう！<br>
+    ありがとう、とてもすてきだよ！<br>
+    ぼくは<ruby>牧場<rt>ぼくじょう</rt></ruby>の<ruby>雲<rt>くも</rt></ruby>みるくで<ruby>作<rt>つく</rt></ruby>ったお<ruby>菓子<rt>かし</rt></ruby>を<ruby>持<rt>も</rt></ruby>ってきたんだ。<br>
+    <ruby>今日<rt>きょう</rt></ruby>はたくさん<ruby>話<rt>はな</rt></ruby>そう。<br>
+    <ruby>一分一秒<rt>いっぷんいちびょう</rt></ruby>もむだにしたくないよ！」
+</div>
+
+<div class="line">
+    <span class="character">📖 ナレーター：</span><br>
+    「 <ruby>地上<rt>ちじょう</rt></ruby>では、<ruby>人々<rt>ひとびと</rt></ruby>が<ruby>夜空<rt>よぞら</rt></ruby>に<ruby>輝<rt>かがや</rt></ruby>く<ruby>二人<rt>ふたり</rt></ruby>の<ruby>大<rt>おお</rt></ruby>きな<ruby>幸せ<rt>しあわせ</rt></ruby>を<ruby>美<rt>うつく</rt></ruby>しい<ruby>星<rt>ほし</rt></ruby>として<ruby>見<rt>み</rt></ruby>ていました。<ruby>今<rt>いま</rt></ruby>でも<ruby>毎年<rt>まいねん</rt></ruby>の７<ruby>月<rt>がつ</rt></ruby>7<ruby>日<rt>か</rt></ruby>、<ruby>皆<rt>みな</rt></ruby>は<ruby>色<rt>いろ</rt></ruby>とりどりの<ruby>短冊<rt>たんざく</rt></ruby>に<ruby>自分<rt>じぶん</rt></ruby>の<ruby>願い<rt>ねがい</rt></ruby>を<ruby>書<rt>か</rt></ruby>いて、<ruby>竹<rt>たけ</rt></ruby>に<ruby>飾<rt>かざ</rt></ruby>って、<ruby>織姫<rt>おりひめ</rt></ruby>と<ruby>彦星<rt>ひこぼし</rt></ruby>のように、<ruby>幸せ<rt>しあわせ</rt></ruby>で、<ruby>自分<rt>じぶん</rt></ruby>の<ruby>仕事<rt>しごと</rt></ruby>に<ruby>集中<rt>しゅうちゅう</rt></ruby>できるよう<ruby>願<rt>ねが</rt></ruby>っています。<br>
+    こうして<ruby>二人<rt>ふたり</rt></ruby>は<ruby>雲<rt>くも</rt></ruby>の<ruby>上<rt>うえ</rt></ruby>でいつまでも<ruby>幸せ<rt>しあわせ</rt></ruby>に<ruby>暮<rt>く</rt></ruby>らしました。」
+</div>
+
+<div style="text-align: center; margin-top: 30px; font-weight: bold; font-size: 1.2em;">
+    おしまい
+</div>
+</body>
+</html>
