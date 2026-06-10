@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4課音読テスト</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            line-height: 2;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #3498db;
+            font-size: 1.2em;
+            border-left: 4px solid #3498db;
+            padding-left: 10px;
+        }
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        rt {
+            font-size: 0.6em;
+            color: #666;
+        }
+        .hide-ruby rt {
+            display: none;
+        }
+        .bottom-ruby {
+          ruby-position: under;
+        }
+        .vertical-mode {
+            writing-mode: vertical-rl; /* Text flows vertically, right to left */
+            text-orientation: upright; /* Keeps characters standing upright */
+            max-height: 90dvh;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div id="scroll_lol"></div>
+<script>
+function toggleFurigana() {
+    document.body.classList.toggle('hide-ruby');
+}
+function toggleFuriganaSide() {
+    document.body.classList.toggle('bottom-ruby');
+}
+function toggleLayout() {
+    toggle_result=document.body.classList.toggle('vertical-mode');
+    // Calculate total scrollable width minus visible viewport width
+    if(toggle_result) document.getElementById('scroll_lol').scrollIntoView({ behavior: 'smooth' });
+}
+</script>
+<button onclick="toggleFurigana()">Toggle Furigana On/Off</button>
+<button onclick="toggleFuriganaSide()">Toggle Furigana Side</button>
+<button onclick="toggleLayout()">Toggle Vertical Text</button>
+<div class="container">
+    <h1>
+        <ruby>４<rt>よん</rt></ruby><ruby>課<rt>か</rt></ruby><ruby>音<rt>おん</rt></ruby><ruby>読<rt>どく</rt></ruby>テスト
+    </h1>
+
+    <div class="section">
+        <h2>1.</h2>
+        <p>
+            <ruby>竜<rt>りゅう</rt></ruby><ruby>宮<rt>ぐう</rt></ruby><ruby>城<rt>じょう</rt></ruby>はまるで<ruby>天<rt>てん</rt></ruby><ruby>国<rt>ごく</rt></ruby>のようだった。
+        </p>
+        <p>
+            <ruby>城<rt>じょう</rt></ruby>は<ruby>全<rt>すべ</rt></ruby>て<ruby>金<rt>かね</rt></ruby>で<ruby>作<rt>つく</rt></ruby>られ、<ruby>花<rt>はな</rt></ruby>は<ruby>咲<rt>さ</rt></ruby>き<ruby>乱<rt>みだ</rt></ruby>れ、<ruby>色<rt>いろ</rt></ruby>とりどりの<ruby>魚<rt>さかな</rt></ruby>たちが<ruby>音<rt>おん</rt></ruby><ruby>楽<rt>がく</rt></ruby>に<ruby>合<rt>あ</rt></ruby>わせて<ruby>踊<rt>おど</rt></ruby>っている。
+        </p>
+        <p>
+            その<ruby>豪<rt>ごう</rt></ruby><ruby>華<rt>か</rt></ruby>さはとても<ruby>言<rt>こと</rt></ruby><ruby>葉<rt>ば</rt></ruby>では<ruby>言<rt>い</rt></ruby>い<ruby>表<rt>あらわ</rt></ruby>せないほどである。
+        </p>
+    </div>
+
+    <hr>
+
+    <div class="section">
+        <h2>2.</h2>
+        <p>
+            <ruby>時<rt>と</rt></ruby><ruby>計<rt>けい</rt></ruby>の<ruby>針<rt>はり</rt></ruby>が7<ruby>時<rt>じ</rt></ruby>35<ruby>分<rt>ふん</rt></ruby>を<ruby>指<rt>さ</rt></ruby>していた。いつもと<ruby>同<rt>おな</rt></ruby>じ<ruby>時<rt>じ</rt></ruby><ruby>間<rt>かん</rt></ruby>、いつも<ruby>見<rt>み</rt></ruby>る<ruby>顔<rt>かお</rt></ruby>、いつもと<ruby>同<rt>おな</rt></ruby>じ<ruby>風<rt>ふう</rt></ruby><ruby>景<rt>けい</rt></ruby>。
+        </p>
+        <p>
+            <ruby>単<rt>たん</rt></ruby><ruby>調<rt>ちょう</rt></ruby>な<ruby>一<rt>いち</rt></ruby><ruby>日<rt>にち</rt></ruby>が<ruby>始<rt>はじ</rt></ruby>まる。彼は、<ruby>足<rt>あし</rt></ruby><ruby>早<rt>ばや</rt></ruby>に<ruby>駅<rt>えき</rt></ruby>に<ruby>向<rt>む</rt></ruby>かっていた。すると、<ruby>何<rt>なに</rt></rubyかに<ruby>足<rt>あし</rt></ruby>をとられて<ruby>転<rt>ころ</rt></ruby>びそうになった。
+        </p>
+    </div>
+</div>
+
+</body>
+</html>
