@@ -59,6 +59,7 @@
             writing-mode: vertical-rl; /* Text flows vertically, right to left */
             text-orientation: upright; /* Keeps characters standing upright */
             max-height: 90dvh;
+            padding-left: 65px;
         }
         .status-button {
           width: 65px;  /* Increased width to accommodate stacked text */
@@ -146,7 +147,6 @@
     }
     function toggleLayout() {
         toggle_result=document.querySelector('.text_container').classList.toggle('vertical-mode');
-        // Calculate total scrollable width minus visible viewport width
         if(toggle_result) document.getElementById('scroll_lol').scrollIntoView({ behavior: 'smooth' });
     }
     function toggleMenu() {
