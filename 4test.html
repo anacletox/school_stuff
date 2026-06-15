@@ -54,6 +54,78 @@
             text-orientation: upright; /* Keeps characters standing upright */
             max-height: 90dvh;
         }
+        .status-button {
+          width: 65px;  /* Increased width to accommodate stacked text */
+          height: 65px; /* Increased height to maintain a circle */
+          background-color: white;
+          border: 2px solid black;
+          color: black;
+          border-radius: 50%;
+          cursor: pointer;
+
+          /* Centering and Stacking properties */
+          display: flex;
+          flex-direction: column; /* Stacks children vertically */
+          justify-content: center; /* Centers vertically */
+          align-items: center;     /* Centers horizontally */
+          
+          font-family: sans-serif;
+          font-weight: bold;
+          font-size: 14px;
+          line-height: 1.2;
+        }
+        /* Optional hover effect */
+        .status-button:hover {
+          background-color: #f0f0f0;
+        }
+
+        .status-button:active {
+          transform: scale(0.95); /* Shrinks slightly when clicked */
+        }
+        .icon-h-arrow {
+          font-size: 14px;
+          font-weight: bold;
+        }
+        .icon-v-arrow {
+          font-size: 20px;
+          font-weight: bold;
+        }
+        .menu-container {
+          position: fixed;
+          top: 20px;
+          left: 20px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          z-index: 1000;
+        }
+
+        .menu-items {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          max-height: 0;      /* Hidden by default */
+          opacity: 0;
+          overflow: hidden;   /* Ensures content is hidden */
+          transition: max-height 0.3s ease, opacity 0.3s ease;
+        }
+
+        /* Class added by JavaScript to expand */
+        .menu-items.show {
+          max-height: 300px; /* Large enough to fit items */
+          opacity: 1;
+        }
+
+        .main-toggle {
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          border: 2px solid black;
+          background: white;
+          cursor: pointer;
+          font-size: 24px;
+          font-weight: bold;
+        }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -61,26 +133,60 @@
 <div id="scroll_lol"></div>
 <script>
 function toggleFurigana() {
-    document.body.classList.toggle('hide-ruby');
+    document.querySelector('.text_container').classList.toggle('hide-ruby');
 }
 function toggleFuriganaSide() {
-    document.body.classList.toggle('bottom-ruby');
+    document.querySelector('.text_container').classList.toggle('bottom-ruby');
 }
 function toggleLayout() {
-    toggle_result=document.body.classList.toggle('vertical-mode');
+    toggle_result=document.querySelector('.text_container').classList.toggle('vertical-mode');
     // Calculate total scrollable width minus visible viewport width
     if(toggle_result) document.getElementById('scroll_lol').scrollIntoView({ behavior: 'smooth' });
 }
+function toggleMenu() {
+    document.querySelector('.menu-items').classList.toggle('show');
+}
 </script>
-<button onclick="toggleFurigana()">Toggle Furigana On/Off</button>
-<button onclick="toggleFuriganaSide()">Toggle Furigana Side</button>
-<button onclick="toggleLayout()">Toggle Vertical Text</button>
-<div class="container">
-    <h1>
-        <ruby>４<rt>よん</rt></ruby><ruby>課<rt>か</rt></ruby><ruby>音<rt>おん</rt></ruby><ruby>読<rt>どく</rt></ruby>テスト
-    </h1>
+<div class="menu-container">
+    <div class="menu-items">
+        <button class="status-button" onclick="toggleFurigana()">
+            <span>あ</span><span>on/off</span>
+        </button>
+        <button class="status-button" onclick="toggleFuriganaSide()">
+            <span>▲/▼</span>
+        </button>
+        <button class="status-button" onclick="toggleLayout()">
+            <span><div class="icon-v-arrow">↕</div>/<div class="icon-h-arrow">↔</div></span>
+        </button>
+    </div>
+    <button class="main-toggle" onclick="toggleMenu()">☰</button>
+
+</div>
+<div class="text_container">
+    <div class="section">
+        <h1>
+            <ruby>3<rt>さん</rt></ruby><ruby>課<rt>か</rt></ruby><ruby>音<rt>おん</rt></ruby><ruby>読<rt>どく</rt></ruby>テスト
+        </h1>
+        <h2>1.</h2>
+        <p>
+        お<ruby>客様<rt>きゃくさま</rt></ruby><ruby>相談係<rt>そうだんがかり</rt></ruby>というのは、<ruby>何<rt>なに</rt></ruby>かお<ruby>困<rt>こま</rt></ruby>りのことや、ご<ruby>要望<rt>ようぼう</rt></ruby>にお<ruby>応<rt>こた</rt></ruby>えする<ruby>仕事<rt>しごと</rt></ruby>です。たとえば<ruby>部屋<rt>へや</rt></ruby>を<ruby>変<rt>か</rt></ruby>えてほしいなどのご<ruby>要望<rt>ようぼう</rt></ruby>や、<ruby>航空券<rt>こうくうけん</rt></ruby>の<ruby>手配<rt>てはい</rt></ruby>、レストランの<ruby>予約<rt>よやく</rt></ruby>などをいたします。<br>
+        また、<ruby>旅行<rt>りょこう</rt></ruby>プランのご<ruby>提案<rt>ていあん</rt></ruby>など、あらゆるご<ruby>相談<rt>そうだん</rt></ruby>をお<ruby>受<rt>う</rt></ruby>けしており<ruby>ます<rt>ます</rt></ruby>。<ruby>お客様<rt>おきゃくさま</rt></ruby>に<ruby>喜<rt>よろこ</rt></ruby>んでいただけると、<ruby>本当<rt>ほんとう</rt></ruby>にこの<ruby>仕事<rt>しごと</rt></ruby>をやってよかったと<ruby>感<rt>かん</rt></ruby>じます。
+        </p>
+    </div>
+    <div class="section">
+        <p>
+        <h2>2.</h2>
+        ホテルの<ruby>仕事<rt>しごと</rt></ruby>をするようになったきっかけは、<ruby>学生時代<rt>がくせいじだい</rt></ruby>にヨーロッパを<ruby>旅行<rt>りょこう</rt></ruby>した<ruby>時<rt>とき</rt></ruby>、ホテルで<ruby>受<rt>う</rt></ruby>けたサービスがとてもすばらしかったんです。<br>
+        それで<ruby>私<rt>わたし</rt></ruby>もぜひホテルで<ruby>働<rt>はたら</rt></ruby>きたいと<ruby>思<rt>おも</rt></ruby>うようになりました。<br>
+        <ruby>お客様<rt>おきゃくさま</rt></ruby>にとってホテルは「<ruby>非日常<rt>ひにちじょう</rt></ruby>の<ruby>空間<rt>くうかん</rt></ruby>」ですから、ふだんの<ruby>生活<rt>せいかつ</rt></ruby>にはない<ruby>空気<rt>くうき</rt></ruby>を<ruby>楽<rt>たの</rt></ruby>しんでいただければと<ruby>思<rt>おも</rt></ruby>います。
+        </p>
+
+    </div>
 
     <div class="section">
+        <h1>
+            <ruby>４<rt>よん</rt></ruby><ruby>課<rt>か</rt></ruby><ruby>音<rt>おん</rt></ruby><ruby>読<rt>どく</rt></ruby>テスト
+        </h1>
         <h2>1.</h2>
         <p>
             <ruby>竜<rt>りゅう</rt></ruby><ruby>宮<rt>ぐう</rt></ruby><ruby>城<rt>じょう</rt></ruby>はまるで<ruby>天<rt>てん</rt></ruby><ruby>国<rt>ごく</rt></ruby>のようだった。
@@ -101,7 +207,7 @@ function toggleLayout() {
             <ruby>時<rt>と</rt></ruby><ruby>計<rt>けい</rt></ruby>の<ruby>針<rt>はり</rt></ruby>が7<ruby>時<rt>じ</rt></ruby>35<ruby>分<rt>ふん</rt></ruby>を<ruby>指<rt>さ</rt></ruby>していた。いつもと<ruby>同<rt>おな</rt></ruby>じ<ruby>時<rt>じ</rt></ruby><ruby>間<rt>かん</rt></ruby>、いつも<ruby>見<rt>み</rt></ruby>る<ruby>顔<rt>かお</rt></ruby>、いつもと<ruby>同<rt>おな</rt></ruby>じ<ruby>風<rt>ふう</rt></ruby><ruby>景<rt>けい</rt></ruby>。
         </p>
         <p>
-            <ruby>単<rt>たん</rt></ruby><ruby>調<rt>ちょう</rt></ruby>な<ruby>一<rt>いち</rt></ruby><ruby>日<rt>にち</rt></ruby>が<ruby>始<rt>はじ</rt></ruby>まる。彼は、<ruby>足<rt>あし</rt></ruby><ruby>早<rt>ばや</rt></ruby>に<ruby>駅<rt>えき</rt></ruby>に<ruby>向<rt>む</rt></ruby>かっていた。すると、<ruby>何<rt>なに</rt></rubyかに<ruby>足<rt>あし</rt></ruby>をとられて<ruby>転<rt>ころ</rt></ruby>びそうになった。
+            <ruby>単<rt>たん</rt></ruby><ruby>調<rt>ちょう</rt></ruby>な<ruby>一<rt>いち</rt></ruby><ruby>日<rt>にち</rt></ruby>が<ruby>始<rt>はじ</rt></ruby>まる。彼は、<ruby>足<rt>あし</rt></ruby><ruby>早<rt>ばや</rt></ruby>に<ruby>駅<rt>えき</rt></ruby>に<ruby>向<rt>む</rt></ruby>かっていた。すると、<ruby>何<rt>なに</rt></ruby>かに<ruby>足<rt>あし</rt></ruby>をとられて<ruby>転<rt>ころ</rt></ruby>びそうになった。
         </p>
     </div>
 </div>
