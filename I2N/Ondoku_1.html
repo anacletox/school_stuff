@@ -137,9 +137,10 @@
           font-size: 24px;
           font-weight: bold;
         }
-        .sound-controls {
+        .controls {
           display: flex;
           justify-content: center;
+          flex-direction: column;
           position: sticky;
           top: 0;
           background: white;
@@ -156,7 +157,10 @@
           border-radius: 6px;
           cursor: pointer;
         }
-
+        .sound-controls {
+          display: block;
+          margin: 0 auto;
+        }
         #person_sel {
           display: block;
           margin: 0 auto;
@@ -225,19 +229,22 @@ function toggleMenu() {
       window.speechSynthesis.cancel();
     }
 </script>
-<div>
-    <select class="text-select" id="person_sel">
-        <option value="nikki">ニッキー・ブラウン</option>
-        <option value="kimu">金元</option>
-        <option value="matsumoto">松本智子</option>
-    </select>   
-</div>
 
-<div class="sound-controls">
-    <button class="sound-button" onclick="playAudio()">▶ Play Audio</button>
-    <button class="sound-button"onclick="stopAudio()">⏹ Stop</button>
-    <input type="range" id="slider" min="0.5" max="2" step="0.05" value="1" autocomplete="off" oninput="sliderValue.value = this.value">
-    <output id="sliderValue" for="slider">1.0</output>
+
+<div class="controls">
+    <div class="text-select">
+        <select id="person_sel">
+            <option value="nikki">ニッキー・ブラウン</option>
+            <option value="kimu">金元</option>
+            <option value="matsumoto">松本智子</option>
+        </select>   
+    </div>
+    <div class="sound-controls">
+        <button class="sound-button" onclick="playAudio()">▶ Play Audio</button>
+        <button class="sound-button"onclick="stopAudio()">⏹ Stop</button>
+        <input type="range" id="slider" min="0.5" max="2" step="0.05" value="1" autocomplete="off" oninput="sliderValue.value = this.value">
+        <output id="sliderValue" for="slider">1.0</output>
+    </div>
 </div>
 <div class="text_container">
     <br><br><br>
