@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一分スピーチ１</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            line-height: 2;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #3498db;
+            font-size: 1.2em;
+            border-left: 4px solid #3498db;
+            padding-left: 10px;
+        }
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        rt {
+            font-size: 0.6em;
+            color: #666;
+        }
+        .hide-ruby rt {
+            display: none;
+        }
+        .bottom-ruby {
+          ruby-position: under;
+        }
+        .vertical-mode {
+            writing-mode: vertical-rl; /* Text flows vertically, right to left */
+            text-orientation: upright; /* Keeps characters standing upright */
+            max-height: 90dvh;
+            padding-left: 65px;
+        }
+        .status-button {
+          width: 65px;  /* Increased width to accommodate stacked text */
+          height: 65px; /* Increased height to maintain a circle */
+          background-color: white;
+          border: 2px solid black;
+          color: black;
+          border-radius: 50%;
+          cursor: pointer;
+
+          /* Centering and Stacking properties */
+          display: flex;
+          flex-direction: column; /* Stacks children vertically */
+          justify-content: center; /* Centers vertically */
+          align-items: center;     /* Centers horizontally */
+          
+          font-family: sans-serif;
+          font-weight: bold;
+          font-size: 14px;
+          line-height: 1.2;
+        }
+        /* Optional hover effect */
+        .status-button:hover {
+          background-color: #f0f0f0;
+        }
+
+        .status-button:active {
+          transform: scale(0.95); /* Shrinks slightly when clicked */
+        }
+        .icon-h-arrow {
+          font-size: 14px;
+          font-weight: bold;
+        }
+        .icon-v-arrow {
+          font-size: 20px;
+          font-weight: bold;
+        }
+        .menu-container {
+          position: fixed;
+          top: 20px;
+          left: 20px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          z-index: 1000;
+        }
+
+        .menu-items {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          max-height: 0;      /* Hidden by default */
+          opacity: 0;
+          overflow: hidden;   /* Ensures content is hidden */
+          transition: max-height 0.3s ease, opacity 0.3s ease;
+        }
+
+        /* Class added by JavaScript to expand */
+        .menu-items.show {
+          max-height: 300px; /* Large enough to fit items */
+          opacity: 1;
+        }
+
+        .main-toggle-off {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          border: 2px solid black;
+          background: white;
+          cursor: pointer;
+          font-size: 12px;
+          font-weight: bold;
+        }
+        .main-toggle-on {
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          border: 2px solid black;
+          background: white;
+          cursor: pointer;
+          font-size: 24px;
+          font-weight: bold;
+        }
+        .sound-controls {
+          display: flex;
+          justify-content: center;
+          position: sticky;
+          top: 0;
+          background: white;
+          padding: 16px 0;
+          border-bottom: 1px solid #ddd;
+          margin-bottom: 24px;
+        }
+        .sound-button {
+          font-size: 15px;
+          padding: 8px 18px;
+          margin-right: 8px;
+          border: 1px solid #333;
+          background: #f8f9fa;
+          border-radius: 6px;
+          cursor: pointer;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div id="scroll_lol"></div>
+<script>
+function toggleFurigana() {
+    document.querySelector('.text_container').classList.toggle('hide-ruby');
+}
+function toggleFuriganaSide() {
+    document.querySelector('.text_container').classList.toggle('bottom-ruby');
+}
+function toggleLayout() {
+    toggle_result=document.querySelector('.text_container').classList.toggle('vertical-mode');
+    if(toggle_result) document.getElementById('scroll_lol').scrollIntoView({ behavior: 'smooth' });
+}
+function toggleMenu() {
+    document.querySelector('.menu-items').classList.toggle('show');
+    document.querySelector('.main-toggle').classList.toggle('main-toggle-off');
+    document.querySelector('.main-toggle').classList.toggle('main-toggle-on');
+}
+</script>
+<div class="menu-container">
+    <button class="main-toggle main-toggle-off" onclick="toggleMenu()">☰</button>
+    <div class="menu-items">
+        <button class="status-button" onclick="toggleFurigana()">
+            <span>あ</span><span>on/off</span>
+        </button>
+        <button class="status-button" onclick="toggleFuriganaSide()">
+            <span>▲/▼</span>
+        </button>
+        <button class="status-button" onclick="toggleLayout()">
+            <span><div class="icon-v-arrow">↕</div>/<div class="icon-h-arrow">↔</div></span>
+        </button>
+    </div>
+</div>
+<script>
+    function getCleanText(element) {
+      // Clone the node so the original HTML isn't modified
+      const clone = element.cloneNode(true);
+
+      // Remove all <rt> (furigana) tags
+      clone.querySelectorAll('rt').forEach(rt => rt.remove());
+
+      // Return clean plain text
+      return clone.innerText;
+    }
+
+    function playAudio() {
+        window.speechSynthesis.cancel();
+        person_id = document.getElementById("person_sel").value;
+        selected_text = document.getElementById(person_id);
+        speechText = getCleanText(selected_text)
+
+        const utterance = new SpeechSynthesisUtterance(speechText);
+        utterance.lang = 'ja-JP';
+        utterance.rate = document.getElementById("slider").value;
+        window.speechSynthesis.speak(utterance);
+    }
+
+    function stopAudio() {
+      window.speechSynthesis.cancel();
+    }
+</script>
+<div class="sound-controls">
+    <select id="person_sel">
+      <option value="nikki">ニッキー・ブラウン</option>
+      <option value="kimu">金元</option>
+      <option value="matsumoto">松本智子</option>
+    </select>
+    <button class="sound-button" onclick="playAudio()">▶ Play Audio</button>
+    <button class="sound-button"onclick="stopAudio()">⏹ Stop</button>
+    <input type="range" id="slider" min="0.5" max="2" step="0.05" value="1" autocomplete="off" oninput="sliderValue.value = this.value">
+    <output id="sliderValue" for="slider">1.0</output>
+</div>
+<div class="text_container">
+    <br><br><br>
+    <div id="nikki">
+        <p>ニッキー・ブラウン</p>
+
+        <p>
+          <ruby>日本<rt>にほん</rt></ruby><ruby>人<rt>じん</rt></ruby>は<ruby>交通<rt>こうつう</rt></ruby><ruby>規則<rt>きそく</rt></ruby>を<ruby>守<rt>まも</rt></ruby>るということにかけては、<ruby>世界一<rt>せかいいち</rt></ruby>だと<ruby>思<rt>おも</rt></ruby>います。<ruby>信号<rt>しんごう</rt></ruby>が<ruby>赤<rt>あか</rt></ruby>なら<ruby>車<rt>くるま</rt></ruby>が<ruby>走<rt>はし</rt></ruby>っていなくても<ruby>渡<rt>わた</rt></ruby>りません。<ruby>私<rt>わたし</rt></ruby>の<ruby>国<rt>くに</rt></ruby>では<ruby>赤信号<rt>あかしんごう</rt></ruby>でも<ruby>平気<rt>へいき</rt></ruby>で<ruby>渡<rt>わた</rt></ruby>ります。
+        </p>
+
+        <p>
+          でも、おもしろいことに、<ruby>日本<rt>にほん</rt></ruby><ruby>人<rt>じん</rt></ruby>は<ruby>信号<rt>しんごう</rt></ruby>が<ruby>変<rt>か</rt></ruby>わる<ruby>前<rt>まえ</rt></ruby>でも<ruby>誰<rt>だれ</rt></ruby>か<ruby>一人<rt>ひとり</rt></ruby>が<ruby>渡<rt>わた</rt></ruby>りだすと、みんな<ruby>一斉<rt>いっせい</rt></ruby>にわたり<ruby>始<rt>はじ</rt></ruby>めるのです。
+        </p>
+    </div>
+    <br><br>
+    <!-- -------------------------------- -->
+    <div id="kimu">
+        <p>
+          <ruby>金<rt>きむ</rt></ruby> <ruby>元<rt>うぉん</rt></ruby>
+        </p>
+
+        <p>
+          <ruby>日本<rt>にほん</rt></ruby>に<ruby>来<rt>き</rt></ruby>て、<ruby>一番<rt>いちばん</rt></ruby><ruby>苦労<rt>くろう</rt></ruby>しているのは<ruby>食事<rt>しょくじ</rt></ruby>です。なにしろ<ruby>国<rt>くに</rt></ruby>にいた<ruby>頃<rt>ころ</rt></ruby>は、<ruby>料理<rt>りょうり</rt></ruby>なんてまるでしたことがなかったものですから。<ruby>食事<rt>しょくじ</rt></ruby>はもっぱら<ruby>外食<rt>がいしょく</rt></ruby>です。でも、<ruby>日本<rt>にほん</rt></ruby>の<ruby>料理<rt>りょうり</rt></ruby>は<ruby>甘<rt>あま</rt></ruby>くて<ruby>口<rt>くち</rt></ruby>に<ruby>合<rt>あ</rt></ruby>いません。その<ruby>上<rt>うえ</rt></ruby>、<ruby>量<rt>りょう</rt></ruby>も<ruby>少<rt>すく</rt></ruby>なめです。<ruby>日本<rt>にほん</rt></ruby><ruby>人<rt>じん</rt></ruby>は<ruby>本当<rt>ほんとう</rt></ruby>にあれで<ruby>足<rt>た</rt></ruby>りるのでしょうか。
+        </p>
+    </div>
+    <br><br>
+    <!-- -------------------------------- -->
+    <div id="matsumoto">
+        <p>
+          <ruby>松本<rt>まつもと</rt></ruby> <ruby>智子<rt>ともこ</rt></ruby>
+        </p>
+
+        <p>
+          <ruby>大学<rt>だいがく</rt></ruby>でアジアの<ruby>留学生<rt>りゅうがくせい</rt></ruby>と<ruby>一緒<rt>いっしょ</rt></ruby>に<ruby>勉強<rt>べんきょう</rt></ruby>しています。<ruby>気<rt>き</rt></ruby>が<ruby>合<rt>あ</rt></ruby>って<ruby>仲良<rt>なかよ</rt></ruby>くしています。<ruby>彼ら<rt>かれら</rt></ruby>は<ruby>本当<rt>ほんとう</rt></ruby>に<ruby>友達<rt>ともだち</rt></ruby>を<ruby>大切<rt>たいせつ</rt></ruby>にします。<ruby>時<rt>とき</rt></ruby>には<ruby>自分<rt>じぶん</rt></ruby>のことを<ruby>後回<rt>あとまわ</rt></ruby>しにしてでも、<ruby>困<rt>こま</rt></ruby>った<ruby>友人<rt>ゆうじん</rt></ruby>を<ruby>助<rt>たす</rt></ruby>けてあげます。そこまでしなくてもと、こちらが<ruby>心配<rt>しんぱい</rt></ruby>してしまうほどです。その<ruby>点<rt>てん</rt></ruby>、<ruby>日本<rt>にほん</rt></ruby><ruby>人<rt>じん</rt></ruby><ruby>同士<rt>どうし</rt></ruby>の<ruby>関係<rt>かんけい</rt></ruby>はあっさりしているかもしれません。
+        </p>
+    </div>
+</div>
+
+</body>
+</html>
