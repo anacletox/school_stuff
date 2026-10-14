@@ -156,6 +156,11 @@
           border-radius: 6px;
           cursor: pointer;
         }
+
+        #person_sel {
+          display: block;
+          margin: 0 auto;
+        }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -220,12 +225,15 @@ function toggleMenu() {
       window.speechSynthesis.cancel();
     }
 </script>
+<div>
+    <select class="text-select" id="person_sel">
+        <option value="nikki">ニッキー・ブラウン</option>
+        <option value="kimu">金元</option>
+        <option value="matsumoto">松本智子</option>
+    </select>   
+</div>
+
 <div class="sound-controls">
-    <select id="person_sel">
-      <option value="nikki">ニッキー・ブラウン</option>
-      <option value="kimu">金元</option>
-      <option value="matsumoto">松本智子</option>
-    </select>
     <button class="sound-button" onclick="playAudio()">▶ Play Audio</button>
     <button class="sound-button"onclick="stopAudio()">⏹ Stop</button>
     <input type="range" id="slider" min="0.5" max="2" step="0.05" value="1" autocomplete="off" oninput="sliderValue.value = this.value">
