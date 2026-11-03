@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音読テスト2</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            line-height: 2;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #3498db;
+            font-size: 1.2em;
+            border-left: 4px solid #3498db;
+            padding-left: 10px;
+        }
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        rt {
+            font-size: 0.6em;
+            color: #666;
+        }
+        .hide-ruby rt {
+            display: none;
+        }
+        .bottom-ruby {
+          ruby-position: under;
+        }
+        .vertical-mode {
+            writing-mode: vertical-rl; /* Text flows vertically, right to left */
+            text-orientation: upright; /* Keeps characters standing upright */
+            max-height: 90dvh;
+            padding-left: 65px;
+        }
+        .status-button {
+          width: 65px;  /* Increased width to accommodate stacked text */
+          height: 65px; /* Increased height to maintain a circle */
+          background-color: white;
+          border: 2px solid black;
+          color: black;
+          border-radius: 50%;
+          cursor: pointer;
+
+          /* Centering and Stacking properties */
+          display: flex;
+          flex-direction: column; /* Stacks children vertically */
+          justify-content: center; /* Centers vertically */
+          align-items: center;     /* Centers horizontally */
+          
+          font-family: sans-serif;
+          font-weight: bold;
+          font-size: 14px;
+          line-height: 1.2;
+        }
+        /* Optional hover effect */
+        .status-button:hover {
+          background-color: #f0f0f0;
+        }
+
+        .status-button:active {
+          transform: scale(0.95); /* Shrinks slightly when clicked */
+        }
+        .icon-h-arrow {
+          font-size: 14px;
+          font-weight: bold;
+        }
+        .icon-v-arrow {
+          font-size: 20px;
+          font-weight: bold;
+        }
+        .menu-container {
+          position: fixed;
+          top: 20px;
+          left: 20px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          z-index: 1000;
+        }
+
+        .menu-items {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          max-height: 0;      /* Hidden by default */
+          opacity: 0;
+          overflow: hidden;   /* Ensures content is hidden */
+          transition: max-height 0.3s ease, opacity 0.3s ease;
+        }
+
+        /* Class added by JavaScript to expand */
+        .menu-items.show {
+          max-height: 300px; /* Large enough to fit items */
+          opacity: 1;
+        }
+
+        .main-toggle-off {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          border: 2px solid black;
+          background: white;
+          cursor: pointer;
+          font-size: 12px;
+          font-weight: bold;
+        }
+        .main-toggle-on {
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          border: 2px solid black;
+          background: white;
+          cursor: pointer;
+          font-size: 24px;
+          font-weight: bold;
+        }
+        .controls {
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+          position: sticky;
+          top: 0;
+          background: white;
+          padding: 16px 0;
+          border-bottom: 1px solid #ddd;
+          margin-bottom: 24px;
+        }
+        .sound-button {
+          font-size: 15px;
+          padding: 8px 18px;
+          margin-right: 8px;
+          border: 1px solid #333;
+          background: #f8f9fa;
+          border-radius: 6px;
+          cursor: pointer;
+        }
+        .sound-controls {
+          display: block;
+          margin: 0 auto;
+        }
+        #person_sel {
+          display: block;
+          margin: 0 auto;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div id="scroll_lol"></div>
+<script>
+function toggleFurigana() {
+    document.querySelector('.text_container').classList.toggle('hide-ruby');
+}
+function toggleFuriganaSide() {
+    document.querySelector('.text_container').classList.toggle('bottom-ruby');
+}
+function toggleLayout() {
+    toggle_result=document.querySelector('.text_container').classList.toggle('vertical-mode');
+    if(toggle_result) document.getElementById('scroll_lol').scrollIntoView({ behavior: 'smooth' });
+}
+function toggleMenu() {
+    document.querySelector('.menu-items').classList.toggle('show');
+    document.querySelector('.main-toggle').classList.toggle('main-toggle-off');
+    document.querySelector('.main-toggle').classList.toggle('main-toggle-on');
+}
+</script>
+<div class="menu-container">
+    <button class="main-toggle main-toggle-off" onclick="toggleMenu()">☰</button>
+    <div class="menu-items">
+        <button class="status-button" onclick="toggleFurigana()">
+            <span>あ</span><span>on/off</span>
+        </button>
+        <button class="status-button" onclick="toggleFuriganaSide()">
+            <span>▲/▼</span>
+        </button>
+        <button class="status-button" onclick="toggleLayout()">
+            <span><div class="icon-v-arrow">↕</div>/<div class="icon-h-arrow">↔</div></span>
+        </button>
+    </div>
+</div>
+<script>
+    function getCleanText(element) {
+      // Clone the node so the original HTML isn't modified
+      const clone = element.cloneNode(true);
+
+      // Remove all <rt> (furigana) tags
+      clone.querySelectorAll('rt').forEach(rt => rt.remove());
+
+      // Return clean plain text
+      return clone.innerText;
+    }
+
+    function playAudio() {
+        window.speechSynthesis.cancel();
+        person_id = document.getElementById("person_sel").value;
+        selected_text = document.getElementById(person_id);
+        speechText = getCleanText(selected_text)
+
+        const utterance = new SpeechSynthesisUtterance(speechText);
+        utterance.lang = 'ja-JP';
+        utterance.rate = document.getElementById("slider").value;
+        window.speechSynthesis.speak(utterance);
+    }
+
+    function stopAudio() {
+      window.speechSynthesis.cancel();
+    }
+</script>
+
+
+<div class="controls">
+    <div class="text-select">
+        <select id="person_sel">
+            <option value="txt1">狭いニッポン</option>
+            <option value="txt2">少子高齢社会</option>
+            <option value="txt3">働きバチ日本人日本人</option>
+        </select>   
+    </div>
+    <div class="sound-controls">
+        <button class="sound-button" onclick="playAudio()">▶ Play Audio</button>
+        <button class="sound-button"onclick="stopAudio()">⏹ Stop</button>
+        <input type="range" id="slider" min="0.5" max="2" step="0.05" value="1" autocomplete="off" oninput="sliderValue.value = this.value">
+        <output id="sliderValue" for="slider">1.0</output>
+    </div>
+</div>
+<div class="text_container">
+    <br><br><br>
+    <div id="txt1">
+        <p>
+          <ruby>狭<rt>せま</rt></ruby>いニッポン
+        </p>
+
+        <p>
+          <ruby>日本<rt>にほん</rt></ruby>の<ruby>国土<rt>こくど</rt></ruby>はおよそ<ruby>38万<rt>さんじゅうはちまん</rt></ruby><ruby>平方<rt>へいほう</rt></ruby>キロメートル。
+          これは<ruby>世界<rt>せかい</rt></ruby>で<ruby>最<rt>もっと</rt></ruby>も<ruby>広<rt>ひろ</rt></ruby>いロシアと<ruby>比<rt>くら</rt></ruby>べると<ruby>約<rt>やく</rt></ruby> <ruby>45分<rt>よんじゅうごぶん</rt></ruby>の 1 にあたる。しかし、ヨーロッパで<ruby>言<rt>い</rt></ruby>うとドイツ、<ruby>東南<rt>とうなん</rt></ruby>アジアではマレーシアやベトナムと<ruby>同程度<rt>どうていど</rt></ruby>の<ruby>面積<rt>めんせき</rt></ruby>である。また<ruby>北<rt>きた</rt></ruby>の<ruby>端<rt>はし</rt></ruby>から<ruby>南<rt>みなみ</rt></ruby>の<ruby>端<rt>はし</rt></ruby>までの<ruby>長<rt>なが</rt></ruby>さはなんと 3000 キロメートルもある。
+        </p>
+    </div>
+    <br><br>
+    <!-- -------------------------------- -->
+    <div id="txt2">
+        <p>
+          <ruby>少子高齢社会<rt>しょうしこうれいしゃかい</rt></ruby>
+        </p>
+
+        <p>
+          <ruby>日本<rt>にほん</rt></ruby>の<ruby>人口<rt>じんこう</rt></ruby>は、<ruby>2008年<rt>にせんはちねん</rt></ruby>の<ruby>1億2808万人<rt>いちおくつにせんはっぴゃくはちまんにん</rt></ruby>をピークに<ruby>減少<rt>げんしょう</rt></ruby>を<ruby>続<rt>つづ</rt></ruby>け、<ruby>2050年<rt>にせんにじゅうごねん</rt></ruby>には<ruby>1億人<rt>いちおくにん</rt></ruby>を<ruby>切<rt>き</rt></ruby>るものと<ruby>予測<rt>よそく</rt></ruby>されている。それは<ruby>生<rt>う</rt></ruby>まれてくる<ruby>子供<rt>こども</rt></ruby>の<ruby>数<rt>かず</rt></ruby>が<ruby>減<rt>へ</rt></ruby>っているためである。このような<ruby>少子化<rt>しょうしか</rt></ruby>の<ruby>原因<rt>げんいん</rt></ruby>は<ruby>様々<rt>さまざま</rt></ruby>に<ruby>考<rt>かんが</rt></ruby>えられる。<ruby>一<rt>ひと</rt></ruby>つには「<ruby>必<rt>かなら</rt></ruby>ずしも<ruby>結婚<rt>けっこん</rt></ruby>して<ruby>子供<rt>こども</rt></ruby>を<ruby>持<rt>も</rt></ruby>つ<ruby>必要<rt>ひつよう</rt></ruby>はない」といった<ruby>価値観<rt>かちかん</rt></ruby>やライフスタイルの<ruby>変化<rt>へんか</rt></ruby>がある。
+        </p>
+    </div>
+    <br><br>
+    <!-- -------------------------------- -->
+    <div id="txt3">
+        <p>
+          <ruby>働<rt>はたら</rt></ruby>きバチ<ruby>日本人<rt>にほんじん</rt></ruby>
+        </p>
+
+        <p>
+          <ruby>日本人<rt>にほんじん</rt></ruby>は<ruby>勤勉<rt>きんべん</rt></ruby>であるとか、<ruby>働<rt>はたら</rt></ruby>き<ruby>過<rt>す</rt></ruby>ぎだとよく<ruby>言<rt>い</rt></ruby>われてきた。「エコノミック・アニマル」とさえ<ruby>言<rt>い</rt></ruby>われたこともある。ところが、<ruby>最近<rt>さいきん</rt></ruby>の<ruby>調査<rt>ちょうさ</rt></ruby>では<ruby>年間労働時間<rt>ねんかんろうどうじかん</rt></ruby>は、アメリカの<ruby>方<rt>ほう</rt></ruby>が<ruby>上回<rt>うわまわ</rt></ruby>っているというのだ。<ruby>日本<rt>にほん</rt></ruby>は<ruby>週休二日制<rt>しゅうきゅうふつかせい</rt></ruby>の<ruby>実施<rt>じっし</rt></ruby>などにより、<ruby>年々<rt>ねんねん</rt></ruby><ruby>労働時間<rt>ろうどうじかん</rt></ruby>が<ruby>減<rt>へ</rt></ruby>ってきているそうだ。
+        </p>
+    </div>
+</div>
+
+</body>
+</html>
