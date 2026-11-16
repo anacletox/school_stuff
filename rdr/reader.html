@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音読テスト2</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            line-height: 2;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #3498db;
+            font-size: 1.2em;
+            border-left: 4px solid #3498db;
+            padding-left: 10px;
+        }
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        rt {
+            font-size: 0.6em;
+            color: #666;
+        }
+        .hide-ruby rt {
+            display: none;
+        }
+        .bottom-ruby {
+          ruby-position: under;
+        }
+        .vertical-mode {
+            writing-mode: vertical-rl; /* Text flows vertically, right to left */
+            text-orientation: upright; /* Keeps characters standing upright */
+            max-height: 90dvh;
+            padding-left: 65px;
+        }
+        .status-button {
+          width: 65px;  /* Increased width to accommodate stacked text */
+          height: 65px; /* Increased height to maintain a circle */
+          background-color: white;
+          border: 2px solid black;
+          color: black;
+          border-radius: 50%;
+          cursor: pointer;
+
+          /* Centering and Stacking properties */
+          display: flex;
+          flex-direction: column; /* Stacks children vertically */
+          justify-content: center; /* Centers vertically */
+          align-items: center;     /* Centers horizontally */
+          
+          font-family: sans-serif;
+          font-weight: bold;
+          font-size: 14px;
+          line-height: 1.2;
+        }
+        /* Optional hover effect */
+        .status-button:hover {
+          background-color: #f0f0f0;
+        }
+
+        .status-button:active {
+          transform: scale(0.95); /* Shrinks slightly when clicked */
+        }
+        .icon-h-arrow {
+          font-size: 14px;
+          font-weight: bold;
+        }
+        .icon-v-arrow {
+          font-size: 20px;
+          font-weight: bold;
+        }
+        .menu-container {
+          position: fixed;
+          top: 20px;
+          left: 20px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          z-index: 1000;
+        }
+
+        .menu-items {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          max-height: 0;      /* Hidden by default */
+          opacity: 0;
+          overflow: hidden;   /* Ensures content is hidden */
+          transition: max-height 0.3s ease, opacity 0.3s ease;
+        }
+
+        /* Class added by JavaScript to expand */
+        .menu-items.show {
+          max-height: 300px; /* Large enough to fit items */
+          opacity: 1;
+        }
+
+        .main-toggle-off {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          border: 2px solid black;
+          background: white;
+          cursor: pointer;
+          font-size: 12px;
+          font-weight: bold;
+        }
+        .main-toggle-on {
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          border: 2px solid black;
+          background: white;
+          cursor: pointer;
+          font-size: 24px;
+          font-weight: bold;
+        }
+        .controls {
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+          position: sticky;
+          top: 0;
+          background: white;
+          padding: 16px 0;
+          border-bottom: 1px solid #ddd;
+          margin-bottom: 24px;
+        }
+        .sound-button {
+          font-size: 15px;
+          padding: 8px 18px;
+          margin-right: 8px;
+          border: 1px solid #333;
+          background: #f8f9fa;
+          border-radius: 6px;
+          cursor: pointer;
+        }
+        .sound-controls {
+          display: block;
+          margin: 0 auto;
+        }
+        #person_sel {
+          display: block;
+          margin: 0 auto;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div id="scroll_lol"></div>
+<script>
+function toggleFurigana() {
+    document.querySelector('.text_container').classList.toggle('hide-ruby');
+}
+function toggleFuriganaSide() {
+    document.querySelector('.text_container').classList.toggle('bottom-ruby');
+}
+function toggleLayout() {
+    toggle_result=document.querySelector('.text_container').classList.toggle('vertical-mode');
+    if(toggle_result) document.getElementById('scroll_lol').scrollIntoView({ behavior: 'smooth' });
+}
+function toggleMenu() {
+    document.querySelector('.menu-items').classList.toggle('show');
+    document.querySelector('.main-toggle').classList.toggle('main-toggle-off');
+    document.querySelector('.main-toggle').classList.toggle('main-toggle-on');
+}
+</script>
+<div class="menu-container">
+    <button class="main-toggle main-toggle-off" onclick="toggleMenu()">☰</button>
+    <div class="menu-items">
+        <button class="status-button" onclick="toggleFurigana()">
+            <span>あ</span><span>on/off</span>
+        </button>
+        <button class="status-button" onclick="toggleFuriganaSide()">
+            <span>▲/▼</span>
+        </button>
+        <button class="status-button" onclick="toggleLayout()">
+            <span><div class="icon-v-arrow">↕</div>/<div class="icon-h-arrow">↔</div></span>
+        </button>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/kuroshiro@1.2.1/dist/kuroshiro.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/kuroshiro-analyzer-kuromoji@1.1.0/dist/kuroshiro-analyzer-kuromoji.min.js"></script>
+<script>
+    function getCleanText(element) {
+      // Clone the node so the original HTML isn't modified
+      const clone = element.cloneNode(true);
+
+      // Remove all <rt> (furigana) tags
+      clone.querySelectorAll('rt').forEach(rt => rt.remove());
+
+      // Return clean plain text
+      // Shitty fix because kuroshiro encases stuff in parenthesis and replacing the delimiters with empty chars doesn't work
+      //so when removing ruby tags the parenthesis stay there, messing up the pace of the TTS(at least in firefox)
+      return clone.innerText.replaceAll("()", '');
+    }
+
+    function playAudio() {
+        window.speechSynthesis.cancel();
+        selected_text = document.getElementById("text_container");
+        speechText = getCleanText(selected_text)
+        console.log(speechText)
+        const utterance = new SpeechSynthesisUtterance(speechText);
+        utterance.lang = 'ja-JP';
+        utterance.rate = document.getElementById("slider").value;
+        window.speechSynthesis.speak(utterance);
+    }
+
+    function stopAudio() {
+      window.speechSynthesis.cancel();
+    }
+
+    const kuroshiro = new Kuroshiro();
+    // Start loading the dictionary immediately on page load
+    const ready = kuroshiro.init(new KuromojiAnalyzer({ dictPath: "https://cdn.jsdelivr.net/npm/kuromoji@0.1.2/dict/" }));
+
+    let kuroshiroInstance = null;
+    let initPromise = null;
+
+    // Safe to call repeatedly across your app
+    async function toFurigana() {
+        raw_text = document.getElementById("raw-text").value;
+        await ready; // Waits only if the dictionary hasn't finished loading yet
+        const result = await kuroshiro.convert(raw_text, {
+          to: "hiragana",
+          mode: "furigana",
+          delimiter_start: '',
+          delimiter_end:''
+        });
+        console.log(result);
+        document.getElementById("text_container").innerHTML=result
+
+    }
+
+</script>
+
+
+<div class="controls">
+    <div class="sound-controls">
+        <button class="sound-button" onclick="playAudio()">▶ Play Audio</button>
+        <button class="sound-button"onclick="stopAudio()">⏹ Stop</button>
+        <input type="range" id="slider" min="0.5" max="2" step="0.05" value="1" autocomplete="off" oninput="sliderValue.value = this.value">
+        <output id="sliderValue" for="slider">1.0</output>
+    </div>
+</div>
+<div>
+    <textarea id="raw-text" rows="5" cols="33">
+        Insert text here
+    </textarea>
+    <button onclick="toFurigana()">▶ Convert to furigana</button>
+</div>
+<div id="text_container" class="text_container">
+    例です
+</div>
+
+</body>
+</html>
