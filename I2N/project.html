@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I2 Project</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            line-height: 2;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #3498db;
+            font-size: 1.2em;
+            border-left: 4px solid #3498db;
+            padding-left: 10px;
+        }
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        rt {
+            font-size: 0.6em;
+            color: #666;
+        }
+        .hide-ruby rt {
+            display: none;
+        }
+        .bottom-ruby {
+          ruby-position: under;
+        }
+        .vertical-mode {
+            writing-mode: vertical-rl; /* Text flows vertically, right to left */
+            text-orientation: upright; /* Keeps characters standing upright */
+            max-height: 90dvh;
+            padding-left: 65px;
+        }
+        .status-button {
+          width: 65px;  /* Increased width to accommodate stacked text */
+          height: 65px; /* Increased height to maintain a circle */
+          background-color: white;
+          border: 2px solid black;
+          color: black;
+          border-radius: 50%;
+          cursor: pointer;
+
+          /* Centering and Stacking properties */
+          display: flex;
+          flex-direction: column; /* Stacks children vertically */
+          justify-content: center; /* Centers vertically */
+          align-items: center;     /* Centers horizontally */
+          
+          font-family: sans-serif;
+          font-weight: bold;
+          font-size: 14px;
+          line-height: 1.2;
+        }
+        /* Optional hover effect */
+        .status-button:hover {
+          background-color: #f0f0f0;
+        }
+
+        .status-button:active {
+          transform: scale(0.95); /* Shrinks slightly when clicked */
+        }
+        .icon-h-arrow {
+          font-size: 14px;
+          font-weight: bold;
+        }
+        .icon-v-arrow {
+          font-size: 20px;
+          font-weight: bold;
+        }
+        .menu-container {
+          position: fixed;
+          top: 20px;
+          left: 20px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          z-index: 1000;
+        }
+
+        .menu-items {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          max-height: 0;      /* Hidden by default */
+          opacity: 0;
+          overflow: hidden;   /* Ensures content is hidden */
+          transition: max-height 0.3s ease, opacity 0.3s ease;
+        }
+
+        /* Class added by JavaScript to expand */
+        .menu-items.show {
+          max-height: 300px; /* Large enough to fit items */
+          opacity: 1;
+        }
+
+        .main-toggle-off {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          border: 2px solid black;
+          background: white;
+          cursor: pointer;
+          font-size: 12px;
+          font-weight: bold;
+        }
+        .main-toggle-on {
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          border: 2px solid black;
+          background: white;
+          cursor: pointer;
+          font-size: 24px;
+          font-weight: bold;
+        }
+        .sound-controls {
+          display: flex;
+          justify-content: center;
+          position: sticky;
+          top: 0;
+          background: white;
+          padding: 16px 0;
+          border-bottom: 1px solid #ddd;
+          margin-bottom: 24px;
+        }
+        .sound-button {
+          font-size: 15px;
+          padding: 8px 18px;
+          margin-right: 8px;
+          border: 1px solid #333;
+          background: #f8f9fa;
+          border-radius: 6px;
+          cursor: pointer;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div id="scroll_lol"></div>
+<script>
+function toggleFurigana() {
+    document.querySelector('.text_container').classList.toggle('hide-ruby');
+}
+function toggleFuriganaSide() {
+    document.querySelector('.text_container').classList.toggle('bottom-ruby');
+}
+function toggleLayout() {
+    toggle_result=document.querySelector('.text_container').classList.toggle('vertical-mode');
+    if(toggle_result) document.getElementById('scroll_lol').scrollIntoView({ behavior: 'smooth' });
+}
+function toggleMenu() {
+    document.querySelector('.menu-items').classList.toggle('show');
+    document.querySelector('.main-toggle').classList.toggle('main-toggle-off');
+    document.querySelector('.main-toggle').classList.toggle('main-toggle-on');
+}
+</script>
+<div class="menu-container">
+    <button class="main-toggle main-toggle-off" onclick="toggleMenu()">☰</button>
+    <div class="menu-items">
+        <button class="status-button" onclick="toggleFurigana()">
+            <span>あ</span><span>on/off</span>
+        </button>
+        <button class="status-button" onclick="toggleFuriganaSide()">
+            <span>▲/▼</span>
+        </button>
+        <button class="status-button" onclick="toggleLayout()">
+            <span><div class="icon-v-arrow">↕</div>/<div class="icon-h-arrow">↔</div></span>
+        </button>
+    </div>
+</div>
+<script>
+    function getCleanText(element) {
+      // Clone the node so the original HTML isn't modified
+      const clone = element.cloneNode(true);
+
+      // Remove all <rt> (furigana) tags
+      clone.querySelectorAll('rt').forEach(rt => rt.remove());
+
+      // Return clean plain text
+      return clone.innerText;
+    }
+
+    function playAudio() {
+      window.speechSynthesis.cancel();
+      speechText = getCleanText(document.querySelector('.text_container'))
+
+      const utterance = new SpeechSynthesisUtterance(speechText);
+      utterance.lang = 'ja-JP';
+      utterance.rate = document.getElementById("slider").value;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function stopAudio() {
+      window.speechSynthesis.cancel();
+    }
+</script>
+<div class="sound-controls">
+    <button class="sound-button" onclick="playAudio()">▶ Play Audio</button>
+    <button class="sound-button"onclick="stopAudio()">⏹ Stop</button>
+    <input type="range" id="slider" min="0.5" max="2" step="0.05" value="1" autocomplete="off" oninput="sliderValue.value = this.value">
+    <output id="sliderValue" for="slider">1.0</output>
+</div>
+<div class="text_container">
+    <br><br><br>
+
+    <p>
+        <p>
+          <ruby>蕪<rt>かぶ</rt>嶋<rt>しま</rt>神<rt>じん</rt>社<rt>じゃ</rt></ruby>は<ruby>八<rt>はち</rt>戸<rt>のへ</rt></ruby>にあります。<br>
+          この<ruby>写<rt>しゃ</rt>真<rt>しん</rt></ruby>を<ruby>見<rt>み</rt></ruby>たら、「あ、いい<ruby>神<rt>じん</rt>社<rt>じゃ</rt></ruby>ですね。<ruby>海<rt>うみ</rt></ruby>に<ruby>囲<rt>かこ</rt></ruby>まれた<ruby>小<rt>ちい</rt></ruby>さい<ruby>山<rt>やま</rt></ruby>にありますね」と<ruby>思<rt>おも</rt></ruby>うでしょう。<br>
+          でも、この<ruby>神<rt>じん</rt>社<rt>じゃ</rt></ruby>のおもしろさは３<ruby>月<rt>がつ</rt></ruby>から７<ruby>月<rt>がつ</rt></ruby>にあらわれます。<br>
+          <ruby>理<rt>り</rt>由<rt>ゆう</rt></ruby>はウミネコです。<br>
+          その<ruby>間<rt>あいだ</rt></ruby>、３<ruby>万<rt>まん</rt>羽<rt>わ</rt></ruby>ぐらいのウミネコが<ruby>蕪<rt>かぶ</rt>嶋<rt>しま</rt>神<rt>じん</rt>社<rt>じゃ</rt></ruby>にやってきて、<ruby>赤<rt>あか</rt></ruby>ちゃんを<ruby>育<rt>そだ</rt></ruby>てます。
+        </p>
+
+        <p>
+          これを<ruby>見<rt>み</rt></ruby>てください。すごくおもしろい<ruby>景<rt>け</rt>色<rt>しき</rt></ruby>ですね。<br>
+          でも、<ruby>少<rt>すこ</rt></ruby>し<ruby>危<rt>あぶ</rt></ruby>ないです。ウミネコのうんこが<ruby>降<rt>ふ</rt></ruby>ってくるかもしれません。
+        </p>
+
+        <p>
+          <ruby>実<rt>じつ</rt></ruby>は、<ruby>入<rt>いり</rt>口<rt>ぐち</rt></ruby>の<ruby>近<rt>ちか</rt></ruby>くにうんこが<ruby>当<rt>あ</rt></ruby>たらないように<ruby>傘<rt>かさ</rt></ruby>があります。<br>
+          でも、<ruby>私<rt>わたし</rt></ruby>は<ruby>気<rt>き</rt></ruby>づかなかったので……この<ruby>写<rt>しゃ</rt>真<rt>しん</rt></ruby>を<ruby>見<rt>み</rt></ruby>てください。<ruby>腕<rt>うで</rt></ruby>が<ruby>汚<rt>よご</rt></ruby>れて、すごく<ruby>大<rt>たい</rt>変<rt>へん</rt></ruby>でした。
+        </p>
+    </p>
+</div>
+
+</body>
+</html>
